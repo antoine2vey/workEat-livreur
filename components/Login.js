@@ -9,28 +9,27 @@ import {
   ScrollView,
 } from 'react-native';
 import { Form, Icon, Separator, InputField } from 'react-native-form-generator';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import ProductList from './ProductList';
+import Home from './Home';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://192.168.1.47:3001';
 
 class Login extends Component {
   static navigationOptions = {
-    title: 'Connexion',
+    header: null,
   };
 
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
-      disabled: true,
+      email: 'aze@gmail.com',
+      password: 'aze',
+      disabled: false,
     };
   }
-
-  componentDidMount() {}
 
   handleFormChange(e) {
     const disabled = e.email && e.password ? false : true;
@@ -46,8 +45,9 @@ class Login extends Component {
     axios
       .post(`${URL}/livreur/login`, { email, password })
       .then(res => {
-        const token = jwtDecode(res.data);
-        this.props.navigation.navigate('Products');
+        const token = res.data.token;
+        const decodedToken = jwtDecode(token);
+        this.props.navigation.navigate('Home', { token, decodedToken });
       })
       .catch(err => {
         Alert.alert('Erreur', 'Mauvais identifiants')
@@ -104,11 +104,29 @@ class Login extends Component {
 }
 
 export default StackNavigator({
-  Home: {
+  Login: {
     screen: Login,
   },
-  Products: {
-    screen: ProductList
+  Home: {
+    screen: Home,
+  }
+}, {
+  navigationOptions: {
+    headerLeft: null,
+    headerStyle: {
+      backgroundColor: '#000',
+    },
+    headerTitle: (
+      <Image 
+        source={require('../logo.png')}
+        resizeMode="cover"
+        style={{
+          width: 300,
+          flex: 1,
+          height: null,
+        }}
+      />
+    )
   }
 });
 
