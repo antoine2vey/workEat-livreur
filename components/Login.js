@@ -8,6 +8,7 @@ import {
   Alert,
   ScrollView,
   Dimensions,
+  StatusBar
 } from 'react-native';
 import { Form, Icon, Separator, InputField } from 'react-native-form-generator';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
@@ -59,6 +60,10 @@ class Login extends Component {
     let { email, password } = this.state;
     return (
       <ScrollView style={form.scroll}>
+        <StatusBar
+          backgroundColor="black"
+          barStyle="light-content"
+        />
         <Image source={require('../map.png')} style={form.backgroundImage} />
         <View style={form.formContainer}>
           <Form

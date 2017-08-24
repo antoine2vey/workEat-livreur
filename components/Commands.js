@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ScrollView, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import Places from './Places';
 
-const URL = 'http://192.168.1.47:3001';
+const URL = 'http://10.20.0.45:3001';
 
 class Commands extends Component {
   constructor(props) {
@@ -31,9 +31,9 @@ class Commands extends Component {
     const { places } = this.props;
 
     return (
-      <ScrollView>
+      <View>
         <Places places={places} commands={commands} />
-      </ScrollView>
+      </View>
     );
   }
 }

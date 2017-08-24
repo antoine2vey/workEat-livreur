@@ -5,8 +5,8 @@ import CommandsGrouped from './CommandsGrouped';
 const Places = ({ places, commands }) => (
   <View>
     {places.map(place =>
-      <View style={styles.placeContainer} >
-        <Text style={styles.placeTitle} >
+      <View key={place._id}>
+        <Text>
           {place.name}
         </Text>
         <CommandsGrouped place={place} commands={commands} />
