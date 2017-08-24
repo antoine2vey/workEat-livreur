@@ -15,13 +15,7 @@ import GestureRecognizer, {
 import GoogleMap from './GoogleMap';
 import Commands from './Commands';
 
-const height = Dimensions.get('window').height;
-
 export default class Home extends Component {
-  static navigationOptions = {
-    title: 'Distribution',
-  };
-
   constructor(props) {
     super(props);
     const {
@@ -59,7 +53,8 @@ export default class Home extends Component {
         <GoogleMap positions={positions} style={{ flex: 1 }} />
         <GestureRecognizer
           style={{ flex: this.state.flex, backgroundColor: '#fff' }}
-          onSwipe={(direction, state) => this.onSwipe(direction, state)}>
+          onSwipe={(direction, state) => this.onSwipe(direction, state)}
+        >
           <Commands token={token} places={positions} />
         </GestureRecognizer>
       </View>
