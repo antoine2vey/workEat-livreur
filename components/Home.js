@@ -12,6 +12,7 @@ import axios from 'axios';
 import GestureRecognizer, {
   swipeDirections,
 } from 'react-native-swipe-gestures';
+import { MaterialIcons } from '@expo/vector-icons';
 import GoogleMap from './GoogleMap';
 import Commands from './Commands';
 
@@ -48,17 +49,17 @@ export default class Home extends Component {
   render() {
     const { positions, token } = this.state;
 
-    return (
-      <View style={styles.scroll}>
+    return <View style={styles.scroll}>
         <GoogleMap positions={positions} style={{ flex: 1 }} />
-        <GestureRecognizer
-          style={{ flex: this.state.flex, backgroundColor: '#fff' }}
-          onSwipe={(direction, state) => this.onSwipe(direction, state)}
-        >
-          <Commands token={token} places={positions} />
+        <GestureRecognizer style={styles.gesture} onSwipe={(direction, state) => this.onSwipe(direction, state)}>
+          <MaterialIcons name="drag-handle" size={30} color={'#e0e0e0'} />
         </GestureRecognizer>
-      </View>
-    );
+        <View style={{ flex: this.state.flex, backgroundColor: '#fff' }}>
+          <ScrollView>
+            <Commands style={{ flex: 1, backgroundColor: '#fff' }} token={token} places={positions} />
+          </ScrollView>
+        </View>
+      </View>;
   }
 }
 
@@ -66,5 +67,11 @@ const styles = StyleSheet.create({
   scroll: {
     flex: 1,
     backgroundColor: '#000',
+  },
+  gesture: {
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff'
   },
 });

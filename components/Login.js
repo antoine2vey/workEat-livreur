@@ -8,6 +8,7 @@ import {
   Alert,
   ScrollView,
   Dimensions,
+  StatusBar
 } from 'react-native';
 import { Form, Icon, Separator, InputField } from 'react-native-form-generator';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
@@ -17,7 +18,7 @@ import jwtDecode from 'jwt-decode';
 import Home from './Home';
 import { TextField } from 'react-native-material-textfield';
 
-const URL = 'http://192.168.1.47:3001';
+const URL = 'http://10.20.0.45:3001';
 
 class Login extends Component {
   static navigationOptions = {
@@ -58,6 +59,10 @@ class Login extends Component {
     let { email, password } = this.state;
     return (
       <ScrollView style={form.scroll}>
+        <StatusBar
+          backgroundColor="black"
+          barStyle="light-content"
+        />
         <Image source={require('../map.png')} style={form.backgroundImage} />
         <View style={form.formContainer}>
           <Form
