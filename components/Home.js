@@ -34,14 +34,21 @@ export default class Home extends Component {
 
   onSwipe(gestureName, gestureState) {
     const {SWIPE_UP, SWIPE_DOWN} = swipeDirections;
+    const { flex } = this.state;
+    const isMatch = flex === 1;
     LayoutAnimation.spring();
+    
+    if (
+      gestureName === 'SWIPE_DOWN' && flex === 0.2 ||
+      gestureName === 'SWIPE_UP' && flex === 5
+    ) return;
 
     switch (gestureName) {
       case SWIPE_UP:
-        this.setState({ flex: 5 })
+        isMatch ? this.setState({ flex: 5 }) : this.setState({ flex: 1 })
         break;
       case SWIPE_DOWN:
-        this.setState({ flex: 1 })
+        isMatch ? this.setState({ flex: 0.2 }) : this.setState({ flex: 1 })
         break;
     }
   }
@@ -49,7 +56,8 @@ export default class Home extends Component {
   render() {
     const { positions, token } = this.state;
 
-    return <View style={styles.scroll}>
+    return (
+      <View style={styles.scroll}>
         <GoogleMap positions={positions} style={{ flex: 1 }} />
         <GestureRecognizer style={styles.gesture} onSwipe={(direction, state) => this.onSwipe(direction, state)}>
           <MaterialIcons name="drag-handle" size={30} color={'#e0e0e0'} />
@@ -59,7 +67,8 @@ export default class Home extends Component {
             <Commands style={{ flex: 1, backgroundColor: '#fff' }} token={token} places={positions} />
           </ScrollView>
         </View>
-      </View>;
+      </View>
+    );
   }
 }
 

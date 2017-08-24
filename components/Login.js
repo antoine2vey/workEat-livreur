@@ -18,7 +18,7 @@ import jwtDecode from 'jwt-decode';
 import Home from './Home';
 import { TextField } from 'react-native-material-textfield';
 
-const URL = 'http://10.20.0.45:3001';
+const URL = 'http://localhost:3001';
 
 class Login extends Component {
   static navigationOptions = {
@@ -58,13 +58,16 @@ class Login extends Component {
   render() {
     let { email, password } = this.state;
     return (
-      <ScrollView style={form.scroll}>
+      <View style={form.scroll}>
         <StatusBar
           backgroundColor="black"
           barStyle="light-content"
         />
         <Image source={require('../map.png')} style={form.backgroundImage} />
-        <View style={form.formContainer}>
+        <ScrollView
+          contentContainerStyle={form.formContainer}
+          centerContent={true}
+        >
           <Form
             ref="registrationForm"
             label="Personal Information"
@@ -115,8 +118,8 @@ class Login extends Component {
               <Text style={form.textButton}>{'Se connecter'.toUpperCase()}</Text>
             </TouchableOpacity>
           </Form>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -191,6 +194,7 @@ const form = StyleSheet.create({
   formContainer: {
     position: 'relative',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    height,
   },
   button: {
     backgroundColor: gold,
