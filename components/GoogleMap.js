@@ -22,6 +22,7 @@ class GoogleMap extends Component {
 
   render() {
     const { places } = this.state;
+    const gold = 'rgb(236,215,133)';
 
     return (
       <MapView
@@ -41,7 +42,7 @@ class GoogleMap extends Component {
             coordinate={place.geolocation}
             title={place.name}
             description={place.description}
-            pinColor={'#ffffe5'}
+            pinColor={gold}
           />
         ))}
       </MapView>

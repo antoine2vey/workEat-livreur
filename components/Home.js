@@ -21,14 +21,17 @@ export default class Home extends Component {
     super(props);
     const {
       token,
-      decodedToken: { email, positions },
+      decodedToken
     } = props.navigation.state.params;
 
     this.state = {
-      email,
-      positions,
+      email: decodedToken.email,
+      positions: decodedToken.positions.map(pos => ({
+        ...pos,
+        isShown: false,
+      })),
       token,
-      flex: 1
+      flex: 1,
     };
   }
 
@@ -64,7 +67,7 @@ export default class Home extends Component {
         </GestureRecognizer>
         <View style={{ flex: this.state.flex, backgroundColor: '#fff' }}>
           <ScrollView>
-            <Commands style={{ flex: 1, backgroundColor: '#fff' }} token={token} places={positions} />
+            <Commands style={{ flex: 1, backgroundColor: '#fff' }} places={positions} token={token} />
           </ScrollView>
         </View>
       </View>

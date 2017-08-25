@@ -3,7 +3,7 @@ import axios from 'axios';
 import { View, Text } from 'react-native';
 import Places from './Places';
 
-const URL = 'http://10.20.0.45:3001';
+const URL = 'http://localhost:3001';
 
 class Commands extends Component {
   constructor(props) {
@@ -28,11 +28,11 @@ class Commands extends Component {
 
   render() {
     const { commands } = this.state;
-    const { places } = this.props;
+    const { places, token } = this.props;
 
     return (
       <View>
-        <Places places={places} commands={commands} />
+        <Places places={places} commands={commands} token={token} />
       </View>
     );
   }

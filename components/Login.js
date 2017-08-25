@@ -52,6 +52,7 @@ class Login extends Component {
       })
       .catch(err => {
         Alert.alert('Erreur', 'Mauvais identifiants')
+        console.log(err);
       });
   }
 
@@ -138,7 +139,7 @@ export default StackNavigator({
       backgroundColor: '#000',
     },
     headerTitle: (
-      <Image 
+      <Image
         source={require('../logo.png')}
         resizeMode="cover"
         style={{
@@ -160,8 +161,8 @@ const form = StyleSheet.create({
   logo: {
     width: width - 100,
     alignSelf: 'center',
-    flex: 1,
-    resizeMode: 'contain'
+    marginTop: 20,
+    resizeMode: 'contain',
   },
   text: {
     fontWeight: 'bold',
@@ -169,7 +170,6 @@ const form = StyleSheet.create({
     textAlign: 'center',
     padding: 5,
     margin: 10,
-    flex: 1,
     color: white,
   },
   backgroundImage: {
@@ -188,8 +188,13 @@ const form = StyleSheet.create({
     marginBottom: 20,
   },
   form: {
-    marginLeft: 40,
-    marginRight: 40,
+    width: width,
+    height: height,
+    flex: 1,
+    alignSelf:'stretch',
+    paddingTop: 40,
+    paddingLeft: 40,
+    paddingRight: 40,
   },
   formContainer: {
     position: 'relative',
@@ -198,10 +203,8 @@ const form = StyleSheet.create({
   },
   button: {
     backgroundColor: gold,
-    height: 50,
-    margin: 15,
+    height: 60,
     marginTop: 50,
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
