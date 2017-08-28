@@ -10,7 +10,7 @@ import axios from 'axios';
 import CommandsGrouped from './CommandsGrouped';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://172.20.10.2:3001';
 
 class Places extends Component {
   constructor(props) {

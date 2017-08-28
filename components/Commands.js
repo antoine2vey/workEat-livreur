@@ -3,7 +3,7 @@ import axios from 'axios';
 import { View, Text } from 'react-native';
 import Places from './Places';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://172.20.10.2:3001';
 
 class Commands extends Component {
   constructor(props) {

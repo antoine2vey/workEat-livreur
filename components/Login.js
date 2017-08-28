@@ -18,7 +18,7 @@ import jwtDecode from 'jwt-decode';
 import Home from './Home';
 import { TextField } from 'react-native-material-textfield';
 
-const URL = 'http://localhost:3001';
+const URL = 'http://172.20.10.2:3001';
 
 class Login extends Component {
   static navigationOptions = {
@@ -28,14 +28,14 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: 'aze@gmail.com',
-      password: 'aze',
-      disabled: false,
+      email: '',
+      password: '',
+      disabled: true,
     };
   }
 
   handleFormChange(e) {
-    const disabled = e.email && e.password ? false : true;
+    const disabled = this.state.email && this.state.password ? false : true;
     this.setState({
       disabled,
     });

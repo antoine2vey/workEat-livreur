@@ -3,14 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 
 const CommandsGrouped = ({ place, commands, isShown, toggleCommand }) => {
-  const getCommandsForCurrentCity = ({ name }) => (
-    commands.filter(command => command.placeToShip.name === name)
-  )
+  const getCommandsForCurrentCity = ({ name }) => {
+    if (!commands) {
+      return [];
+    }
+    return commands.filter(command => command.placeToShip.name === name);
+  }
   const title = getCommandsForCurrentCity(place);
 
-  const getNumberLivredCommand = (commands) => (
-    title.filter(command => command.isDistribued === true)
-  )
+  const getNumberLivredCommand = (commands) => {
+    if (!commands) {
+      return 0;
+    }
+    return title.filter(command => command.isDistribued === true);
+  }
   const livredCommands = getNumberLivredCommand(place, commands);
   return (
     <View>
